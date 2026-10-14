@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Surf Flyer</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+<style>
+  /* Printable flyer for a surf school or rental stand: flyer.html?ref=school-name */
+  @page{size:letter;margin:0}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#0a0a0a;color:#f5f5f5;font:400 16px/1.4 "Inter Tight",system-ui,sans-serif;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .page{width:8.5in;height:11in;margin:0 auto;display:grid;grid-template-rows:5.6in 1fr;overflow:hidden}
+  .photo{background:#141414 center/cover no-repeat}
+  .body{padding:.5in .6in;display:grid;grid-template-columns:1fr auto;gap:.4in;align-content:space-between}
+  h1{font-weight:500;font-size:54px;line-height:.98;letter-spacing:-.04em;grid-column:1/-1}
+  h1 span{color:#8c8c8c}
+  .prices{display:grid;gap:14px;align-self:end}
+  .row{display:flex;align-items:baseline;gap:14px;border-bottom:1px solid #232323;padding-bottom:12px}
+  .row b{font-weight:500;font-size:34px;letter-spacing:-.03em;min-width:1.6in}
+  .row span{color:#b5b5b5;font-size:16px}
+  .qr{background:#fff;padding:14px;border-radius:4px;align-self:end;text-align:center;color:#0a0a0a;font-size:12px;font-weight:500}
+  .qr img{display:block;width:1.7in;height:1.7in;image-rendering:pixelated;margin-bottom:6px}
+  .foot{grid-column:1/-1;display:flex;justify-content:space-between;color:#8c8c8c;font-size:13px}
+  .print{position:fixed;right:16px;top:16px;background:#f5f5f5;color:#0a0a0a;border:0;padding:10px 18px;font:500 14px "Inter Tight";cursor:pointer;border-radius:2px}
+  @media print{.print{display:none}}
+  @media screen and (max-width:8.5in){.page{transform-origin:top left;transform:scale(calc(100vw / 8.5in))}}
+</style>
+</head>
+<body>
+<button class="print" onclick="print()">Print</button>
+<div class="page">
+  <div class="photo" id="photo"></div>
+  <div class="body">
+    <h1>Get filmed<br><span>surfing today.</span></h1>
+    <div class="prices" id="prices"></div>
+    <div class="qr"><img id="qr" alt="">Scan to book</div>
+    <div class="foot"><span id="brand"></span><span id="contact"></span></div>
+  </div>
+</div>
+<script src="site.config.js"></script>
+<script src="booking.js"></script>
+<script>
+  const S = window.SITE, P = S.surfPartners, surf = S.services.find(s => s.name === "Surf Sessions");
+  const ref = Booking.readRef(location.search);
+  document.getElementById("photo").style.backgroundImage = `url(${P.image})`;
+  document.getElementById("brand").textContent = S.brand + (S.instagram ? " · @" + S.instagram : "");
+  document.getElementById("contact").textContent = S.faaCertified ? "FAA Part 107 certified · Insured" : "";
+  document.getElementById("prices").innerHTML = [
+    [`$${P.lessonPrice}`, "per student, during your lesson · photos + reel"],
+    surf && [`$${surf.price}`, `private session · ${surf.includes[0]} · ${surf.delivery} delivery`]
+  ].filter(Boolean).map(([a, t]) => `<div class="row"><b>${a}</b><span>${t}</span></div>`).join("");
+  const url = `${location.origin}/?ref=${encodeURIComponent(ref)}#book`;
+  const qr = qrcode(0, "M"); qr.addData(url); qr.make();
+  document.getElementById("qr").src = qr.createDataURL(8, 0);
+  document.title = "Surf Flyer" + (ref ? " · " + ref : "");
+</script>
+</body>
+</html>

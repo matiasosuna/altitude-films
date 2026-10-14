@@ -26,3 +26,9 @@ test("mailto link has subject with service and date", () => {
 test("date range formats without timezone shift", () => {
   assert.strictEqual(B.formatRange("2026-10-13", "2026-10-31"), "Oct 13 – Oct 31");
 });
+
+test("partner ref is sanitized and added to the message", () => {
+  assert.strictEqual(B.readRef("?ref=kihei-surf<script>"), "kihei-surfscript");
+  assert.strictEqual(B.readRef(""), "");
+  assert.match(B.bookingMessage({ name: "A", service: "Surf Sessions", ref: "kihei-surf" }), /Referred by: kihei-surf/);
+});

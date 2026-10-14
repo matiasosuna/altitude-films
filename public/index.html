@@ -55,6 +55,16 @@
   .plan .when{font-size:13px;color:var(--muted)}
   .plan .btn{justify-content:center}
   .notes{display:flex;flex-wrap:wrap;gap:8px 32px;margin-top:24px;font-size:14px;color:var(--muted)}
+  .surf{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+  .surf-img{aspect-ratio:4/5;background:var(--soft);overflow:hidden}
+  .surf-img img{width:100%;height:100%;object-fit:cover;display:block}
+  .surf-body{display:grid;gap:32px}
+  .lead{font-size:clamp(20px,2vw,24px);letter-spacing:-.015em;line-height:1.35}
+  .offer{display:flex;justify-content:space-between;gap:16px;padding:20px 0;border-bottom:1px solid var(--line)}
+  .offer b{font-weight:500;font-size:18px} .offer span{color:var(--muted);font-size:14px;display:block;margin-top:2px}
+  .offer .amt{font-size:28px;font-weight:500;letter-spacing:-.03em;white-space:nowrap}
+  .surf-body .btn{justify-self:start}
+  .offer .amt span{display:inline;margin:0 0 0 6px;font-size:13px;letter-spacing:0}
   .work{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
   .work .tile{aspect-ratio:1;background:var(--soft);overflow:hidden}
   .work .tile:first-child{grid-column:span 2;grid-row:span 2;aspect-ratio:auto}
@@ -83,7 +93,7 @@
     .hero{padding-top:56px;padding-bottom:32px} .media{aspect-ratio:4/5}
     section{padding:88px 0 0}
     .head,.stop,.cred{grid-template-columns:1fr;gap:8px}
-    .plans{grid-template-columns:1fr} .plan{padding:24px}
+    .plans{grid-template-columns:1fr} .plan{padding:24px} .surf{grid-template-columns:1fr;gap:28px}
     .work{grid-template-columns:1fr 1fr} form{grid-template-columns:1fr;gap:28px}
   }
 </style>
@@ -91,7 +101,7 @@
 <body>
 <nav><div class="wrap">
   <a class="logo" href="#" data-brand></a>
-  <div class="links"><a href="#services">Pricing</a><a href="#work">Work</a><a href="#where">Location</a><a href="#book">Contact</a></div>
+  <div class="links"><a href="#services">Pricing</a><a href="#surf">Surf</a><a href="#work">Work</a><a href="#where">Location</a><a href="#book">Contact</a></div>
   <a class="btn" href="#book">Book</a>
 </div></nav>
 
@@ -110,6 +120,18 @@
   <div class="head"><span class="label">Pricing</span><h2>Simple, fixed prices.</h2></div>
   <div class="plans" id="service-list"></div>
   <div class="notes" id="notes"></div>
+</div></section>
+
+<section id="surf"><div class="wrap">
+  <div class="head"><span class="label">Surf schools &amp; rentals</span><h2>Your students, filmed riding.</h2></div>
+  <div class="surf">
+    <div class="surf-img" id="surf-img"></div>
+    <div class="surf-body">
+      <p class="lead">We film your lessons from the drone and the shore. Your students get photos and a reel of their first waves. You earn on every booking.</p>
+      <div class="rows" id="surf-offer"></div>
+      <a class="btn" href="#book" data-pick="Surf school partnership">Become a partner</a>
+    </div>
+  </div>
 </div></section>
 
 <section id="work"><div class="wrap">
@@ -166,8 +188,17 @@
       <span class="when">Delivered in ${s.delivery}</span>
       <a class="btn line" href="#book" data-pick="${s.name}">Book this</a></div>`).join("");
   $("#notes").innerHTML = [...S.pricingNotes, S.faaCertified ? "FAA Part 107 certified · Insured" : ""].filter(Boolean).map(n => `<span>${n}</span>`).join("");
+  const P = S.surfPartners, surf = S.services.find(s => s.name === "Surf Sessions");
+  if (P) {
+    $("#surf-img").innerHTML = `<img src="${P.image}" alt="" loading="lazy">`;
+    $("#surf-offer").innerHTML = [
+      ["During your lesson", `Min. ${P.lessonMin} students · photos + reel for each`, `$${P.lessonPrice}<span>per student</span>`],
+      surf && ["Private session", surf.includes.join(" · "), `$${surf.price}<span>per surfer</span>`],
+      ["Your cut", "On every booking made with your code or QR", `${P.commission}%<span>commission</span>`]
+    ].filter(Boolean).map(([t, d, a]) => `<div class="offer"><div><b>${t}</b><span>${d}</span></div><div class="amt">${a}</div></div>`).join("");
+  } else $("#surf").remove();
   all("[data-pick]", a => a.addEventListener("click", () => $("#service-select").value = a.dataset.pick));
-  $("#service-select").innerHTML = S.services.map(s => `<option value="${s.name}">${s.name} · $${s.price.toLocaleString("en-US")}</option>`).join("") + "<option>Something else</option>";
+  $("#service-select").innerHTML = S.services.map(s => `<option value="${s.name}">${s.name} · $${s.price.toLocaleString("en-US")}</option>`).join("") + (S.surfPartners ? "<option>Surf school partnership</option>" : "") + "<option>Something else</option>";
 
   // Portfolio: put files in public/media and list them in site.config.js → work.
   const work = S.work || [];
@@ -179,10 +210,13 @@
   const links = [["instagram", "https://instagram.com/", "Instagram"], ["youtube", "https://youtube.com/@", "YouTube"], ["tiktok", "https://tiktok.com/@", "TikTok"]];
   $("#social").innerHTML = links.filter(([k]) => S[k]).map(([k, u, n]) => `<a href="${u}${S[k]}" target="_blank" rel="noopener">${n}</a>`).join("");
 
+  // Partner code from the URL (?ref=school-name), kept for the session so it survives navigation.
+  let ref = Booking.readRef(location.search);
+  try { if (ref) sessionStorage.setItem("ref", ref); else ref = sessionStorage.getItem("ref") || ""; } catch {}
   if (!S.whatsapp) $("#btn-wa").remove();
   $("#booking").addEventListener("submit", e => {
     e.preventDefault();
-    const d = Object.fromEntries(new FormData(e.target));
+    const d = { ...Object.fromEntries(new FormData(e.target)), ref };
     const url = e.submitter.dataset.via === "whatsapp" ? Booking.whatsappLink(S.whatsapp, Booking.bookingMessage(d)) : Booking.mailtoLink(S.email, d);
     window.open(url, "_blank");
   });

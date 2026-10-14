@@ -30,7 +30,8 @@ window.SITE = {
     { src: "media/house.jpg", caption: "Property · Big Island" },
     { src: "media/cliffs.jpg", caption: "Makapuʻu · Oahu" },
     { src: "media/courts.jpg", caption: "Sports event · Hyatt Regency" },
-    { src: "media/fireworks.jpg", caption: "Fireworks · Waikiki" }
+    { src: "media/fireworks.jpg", caption: "Fireworks · Waikiki" },
+    { src: "media/surf2.jpg", caption: "Surf session" }
   ],
 
   // Fixed prices: what you pay, what you get, when you get it.
@@ -45,9 +46,19 @@ window.SITE = {
       includes: ["1.5 hours, 1–2 locations", "50 edited photos", "1 drone reel"], delivery: "72 hours" },
     { name: "Hotels, Tours & Brands", desc: "Content that books rooms and tours.", price: 900, unit: "per day",
       includes: ["Half day of filming (4h)", "3 edited reels for social", "40 edited photos", "Usage rights for ads"], delivery: "1 week" },
+    { name: "Surf Sessions", desc: "Your best waves, from the sky and the shore.", price: 200, unit: "per surfer",
+      includes: ["1 hour in the water", "40+ edited photos", "1 reel of your best rides"], delivery: "24 hours" },
     { name: "Construction & Inspection", desc: "Progress, roofs and sites from above.", price: 300, unit: "per visit",
       includes: ["Up to 1 hour flight", "40 high-res photos", "Short progress video"], delivery: "48 hours" }
   ],
+
+  // Surf schools and board rental stands offer our sessions to their students and earn a cut.
+  surfPartners: {
+    commission: 20,           // % of each booking that comes with their code
+    lessonPrice: 75,          // per student, shot during the school's own lesson
+    lessonMin: 3,             // minimum students per lesson
+    image: "media/surf.jpg"
+  },
 
   pricingNotes: [
     "Prices in USD. No travel fee on the island we're on.",
