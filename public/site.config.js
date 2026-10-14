@@ -55,7 +55,7 @@ window.SITE = {
   // Surf schools and board rental stands offer our sessions to their students and earn a cut.
   surfPartners: {
     commission: 20,           // % of each booking that comes with their code
-    lessonPrice: 45,          // per student, shot during the school's own lesson
+    lessonPrice: 30,          // per student, shot during the school's own lesson
     lessonMin: 3,             // minimum students per lesson
     image: "media/surf.jpg"
   },
