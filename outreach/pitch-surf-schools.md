@@ -3,7 +3,7 @@
 ## DM / WhatsApp (corto)
 Aloha! I'm [NAME], a drone & camera operator (FAA certified) — I've filmed for Hawaiʻi Volcanoes National Park, Hilton Waikoloa and Hyatt Regency.
 
-I'd love to film your students during lessons: drone + shore shots, photos and a reel of their waves, delivered in 24h. $75 per student, and you keep 20% of every booking — no work on your side. I bring a flyer with your own QR for the stand.
+I'd love to film your students during lessons: drone + shore shots, photos and a reel of their waves, delivered in 24h. $45 per student, and you keep 20% of every booking — no work on your side. I bring a flyer with your own QR for the stand.
 
 Can I come by this week and film one lesson for free so you can see the result?
 
