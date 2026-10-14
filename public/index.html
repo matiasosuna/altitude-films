@@ -32,7 +32,9 @@
   .btn.line{background:none;color:var(--text);box-shadow:inset 0 0 0 1px var(--text)}
   .media{aspect-ratio:21/9;background:var(--soft);overflow:hidden}
   .cred{display:grid;grid-template-columns:1fr 2fr;gap:32px;padding:28px 0;border-bottom:1px solid var(--line)}
-  .cred p{font-size:clamp(20px,2.2vw,28px);font-weight:400;letter-spacing:-.02em;line-height:1.25}
+  .cred ul{list-style:none;display:grid;gap:10px}
+  .cred li{font-size:clamp(20px,2.2vw,28px);letter-spacing:-.02em;line-height:1.25}
+  .cred li span{color:var(--muted)}
   .media video,.media img{width:100%;height:100%;object-fit:cover;display:block}
   section{padding:120px 0 0}
   .head{display:grid;grid-template-columns:1fr 2fr;gap:32px;margin-bottom:48px}
@@ -102,7 +104,7 @@
   </div>
 </div>
 <div class="wrap"><div class="media" id="hero-media"></div>
-  <div class="cred" id="cred"><span class="label">Experience</span><p></p></div></div>
+  <div class="cred" id="cred"><span class="label">Trusted by</span><ul></ul></div></div>
 
 <section id="services"><div class="wrap">
   <div class="head"><span class="label">Pricing</span><h2>Simple, fixed prices.</h2></div>
@@ -153,7 +155,8 @@
   $("[data-tagline]").textContent = S.tagline;
   const mail = $("[data-email]"); mail.textContent = S.email; mail.href = "mailto:" + S.email;
   $("#year").textContent = new Date().getFullYear();
-  if (S.credential) $("#cred p").textContent = S.credential + "."; else $("#cred").remove();
+  if (S.credentials?.length) $("#cred ul").innerHTML = S.credentials.map(c => { const [who, what] = c.split(" — "); return `<li>${who}${what ? ` <span>— ${what}</span>` : ""}</li>`; }).join("");
+  else $("#cred").remove();
   if (S.hero) $("#hero-media").innerHTML = `<video src="${S.hero}" poster="${S.heroPoster || ""}" muted loop playsinline autoplay preload="auto"></video>`;
 
   $("#service-list").innerHTML = S.services.map(s => `<div class="plan">

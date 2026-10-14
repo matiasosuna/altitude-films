@@ -15,17 +15,21 @@ window.SITE = {
     { place: "Oahu, Hawaii", from: "2026-11-01", to: "2026-11-15" }
   ],
 
-  credential: "Filmed for Hawaiʻi Volcanoes National Park during the Kīlauea eruption",
+  credentials: [
+    "Hawaiʻi Volcanoes National Park — Kīlauea eruption",
+    "Hilton Waikoloa Village — resort content",
+    "Hyatt Regency — sports events"
+  ],
 
   hero: "media/hero.mp4",
   heroPoster: "media/hero.jpg",
   work: [
     { src: "media/lava.jpg", caption: "Kīlauea eruption · Hawaiʻi Volcanoes NP" },
-    { src: "media/resort.jpg", caption: "Resort · Kohala Coast" },
+    { src: "media/resort.jpg", caption: "Hilton Waikoloa Village" },
     { src: "media/float.jpg", caption: "Travel session · Oahu" },
     { src: "media/house.jpg", caption: "Property · Big Island" },
     { src: "media/cliffs.jpg", caption: "Makapuʻu · Oahu" },
-    { src: "media/courts.jpg", caption: "Brand night shoot" },
+    { src: "media/courts.jpg", caption: "Sports event · Hyatt Regency" },
     { src: "media/fireworks.jpg", caption: "Fireworks · Waikiki" }
   ],
 
