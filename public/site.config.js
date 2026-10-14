@@ -15,6 +15,18 @@ window.SITE = {
     { place: "Oahu, Hawaii", from: "2026-11-01", to: "2026-11-15" }
   ],
 
+  hero: "media/hero.mp4",
+  heroPoster: "media/hero.jpg",
+  work: [
+    { src: "media/lava.jpg", caption: "Lava flow · Big Island" },
+    { src: "media/resort.jpg", caption: "Resort · Kohala Coast" },
+    { src: "media/float.jpg", caption: "Travel session · Oahu" },
+    { src: "media/house.jpg", caption: "Property · Big Island" },
+    { src: "media/cove.jpg", caption: "Halona Cove · Oahu" },
+    { src: "media/courts.jpg", caption: "Brand night shoot" },
+    { src: "media/fireworks.jpg", caption: "Fireworks · Waikiki" }
+  ],
+
   // Fixed prices: what you pay, what you get, when you get it.
   services: [
     { name: "Real Estate & Rentals", desc: "Sell or rent the property faster.", price: 350, unit: "per property",

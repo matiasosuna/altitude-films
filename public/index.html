@@ -54,6 +54,8 @@
   .work{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
   .work .tile{aspect-ratio:1;background:var(--soft);overflow:hidden}
   .work .tile:first-child{grid-column:span 2;grid-row:span 2;aspect-ratio:auto}
+  .work .tile{position:relative}
+  .work .cap{position:absolute;left:12px;bottom:10px;font-size:12px;color:#fff;text-shadow:0 1px 6px rgba(0,0,0,.6);opacity:.9}
   .work img,.work video{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s}
   .work .tile:hover img,.work .tile:hover video{transform:scale(1.03)}
   .stop{display:grid;grid-template-columns:1fr 2fr;gap:32px;padding:28px 0;border-bottom:1px solid var(--line)}
@@ -148,7 +150,7 @@
   $("[data-tagline]").textContent = S.tagline;
   const mail = $("[data-email]"); mail.textContent = S.email; mail.href = "mailto:" + S.email;
   $("#year").textContent = new Date().getFullYear();
-  if (S.hero) $("#hero-media").innerHTML = media(S.hero);
+  if (S.hero) $("#hero-media").innerHTML = `<video src="${S.hero}" poster="${S.heroPoster || ""}" muted loop playsinline autoplay preload="auto"></video>`;
 
   $("#service-list").innerHTML = S.services.map(s => `<div class="plan">
       <div><h3>${s.name}</h3><p class="desc">${s.desc}</p></div>
@@ -162,7 +164,7 @@
 
   // Portfolio: put files in public/media and list them in site.config.js → work.
   const work = S.work || [];
-  $("#work-list").innerHTML = (work.length ? work : Array(7).fill(null)).map(w => `<div class="tile">${w ? media(w) : ""}</div>`).join("");
+  $("#work-list").innerHTML = (work.length ? work : Array(7).fill(null)).map(w => `<div class="tile">${w ? media(w.src) + `<span class="cap">${w.caption}</span>` : ""}</div>`).join("");
 
   const stop = (s, now) => `<div class="stop ${now ? "now" : ""}"><span class="n label">${now ? "● Now" : "Next"}</span><div class="body"><b>${s.place}</b><span class="dates">${Booking.formatRange(s.from, s.to)}</span></div></div>`;
   $("#route").innerHTML = stop(S.now, true) + S.next.map(s => stop(s, false)).join("");
