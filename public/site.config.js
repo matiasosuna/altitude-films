@@ -15,10 +15,12 @@ window.SITE = {
     { place: "Oahu, Hawaii", from: "2026-11-01", to: "2026-11-15" }
   ],
 
+  credential: "Filmed for Hawaiʻi Volcanoes National Park during the Kīlauea eruption",
+
   hero: "media/hero.mp4",
   heroPoster: "media/hero.jpg",
   work: [
-    { src: "media/lava.jpg", caption: "Lava flow · Big Island" },
+    { src: "media/lava.jpg", caption: "Kīlauea eruption · Hawaiʻi Volcanoes NP" },
     { src: "media/resort.jpg", caption: "Resort · Kohala Coast" },
     { src: "media/float.jpg", caption: "Travel session · Oahu" },
     { src: "media/house.jpg", caption: "Property · Big Island" },
