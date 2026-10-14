@@ -6,109 +6,120 @@
 <title>Aerial & Camera Production</title>
 <meta name="description" content="Drone and camera production for real estate, weddings, brands and travel. FAA Part 107 certified.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root{--bg:#0d1214;--panel:#151c1f;--line:#24302f;--text:#eef2f0;--muted:#9aa8a5;--accent:#5fd3b8;--accent-ink:#06231d;--sun:#f2b66d}
-  *{box-sizing:border-box;margin:0}
+  :root{--bg:#fff;--text:#0a0a0a;--muted:#8a8a8a;--line:#ececec;--soft:#f4f4f4}
+  *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
-  body{background:var(--bg);color:var(--text);font:16px/1.6 Inter,system-ui,sans-serif}
-  a{color:inherit}
-  .wrap{max-width:1080px;margin:0 auto;padding:0 20px}
-  nav{position:sticky;top:0;z-index:10;background:rgba(13,18,20,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
-  .logo{font-family:Fraunces,serif;font-weight:600;font-size:20px;text-decoration:none}
-  nav .links{display:flex;gap:22px;font-size:14px}
-  nav .links a{text-decoration:none;color:var(--muted)} nav .links a:hover{color:var(--text)}
-  .btn{display:inline-block;background:var(--accent);color:var(--accent-ink);font-weight:600;padding:12px 22px;border-radius:999px;text-decoration:none;border:0;cursor:pointer;font-size:15px}
-  .btn.ghost{background:transparent;color:var(--text);border:1px solid var(--line)}
-  header.hero{position:relative;min-height:88vh;display:flex;align-items:flex-end;overflow:hidden;
-    background:radial-gradient(120% 80% at 70% 0%,#1d4a4a 0%,transparent 60%),radial-gradient(90% 60% at 10% 100%,#3a2a1a 0%,transparent 60%),var(--bg)}
-  header.hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-  header.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,var(--bg) 5%,transparent 60%)}
-  .hero .wrap{position:relative;z-index:1;padding-bottom:72px}
-  .pill{display:inline-flex;align-items:center;gap:8px;font-size:13px;padding:6px 12px;border:1px solid var(--line);border-radius:999px;background:rgba(21,28,31,.7);margin-bottom:22px}
-  .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px rgba(95,211,184,.2)}
-  h1{font-family:Fraunces,serif;font-weight:400;font-size:clamp(40px,7vw,84px);line-height:1.02;max-width:12ch;letter-spacing:-.02em}
-  .hero p{color:var(--muted);font-size:18px;max-width:46ch;margin:18px 0 28px}
-  .hero .cta{display:flex;gap:12px;flex-wrap:wrap}
-  section{padding:88px 0;border-top:1px solid var(--line)}
-  h2{font-family:Fraunces,serif;font-weight:400;font-size:clamp(30px,4vw,44px);margin-bottom:10px;letter-spacing:-.01em}
-  .sub{color:var(--muted);margin-bottom:36px;max-width:56ch}
-  .grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
-  .card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:8px}
-  .card h3{font-size:17px;font-weight:600}
-  .card p{color:var(--muted);font-size:15px;flex:1}
-  .price{color:var(--sun);font-weight:600;font-size:14px}
-  .work{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
-  .work .tile{aspect-ratio:4/5;border-radius:14px;background:linear-gradient(160deg,#1c3a3a,#2a2318);border:1px solid var(--line);overflow:hidden}
-  .work .tile img,.work .tile video{width:100%;height:100%;object-fit:cover;display:block}
-  .route{display:grid;gap:12px}
-  .stop{display:flex;justify-content:space-between;align-items:center;gap:12px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px 22px;flex-wrap:wrap}
-  .stop.now{border-color:var(--accent)}
-  .stop b{font-size:18px;font-weight:600}
-  .stop span{color:var(--muted);font-size:14px}
-  .tag{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--accent)}
-  form{display:grid;gap:14px;grid-template-columns:1fr 1fr;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:28px}
+  body{background:var(--bg);color:var(--text);font:400 16px/1.5 "Inter Tight",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1240px;margin:0 auto;padding:0 32px}
+  nav{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.9);backdrop-filter:blur(12px)}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:68px;font-size:14px}
+  .logo{font-weight:600;letter-spacing:-.01em}
+  nav .links{display:flex;gap:32px;color:var(--muted)}
+  nav .links a:hover{color:var(--text)}
+  .hero{padding-top:96px;padding-bottom:48px}
+  .meta{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted);margin-bottom:28px}
+  .dot{width:6px;height:6px;border-radius:50%;background:#16a34a;animation:p 2s infinite}
+  @keyframes p{50%{opacity:.3}}
+  h1{font-weight:500;font-size:clamp(48px,9vw,136px);line-height:.95;letter-spacing:-.045em}
+  h1 span{color:var(--muted)}
+  .hero-row{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;margin-top:40px;flex-wrap:wrap}
+  .hero-row p{max-width:34ch;color:var(--muted);font-size:17px}
+  .btn{display:inline-flex;align-items:center;gap:10px;background:var(--text);color:#fff;font:500 15px "Inter Tight",sans-serif;padding:14px 26px;border:0;border-radius:2px;cursor:pointer;transition:opacity .2s}
+  .btn:hover{opacity:.8}
+  .btn.line{background:none;color:var(--text);box-shadow:inset 0 0 0 1px var(--text)}
+  .media{aspect-ratio:21/9;background:var(--soft);overflow:hidden}
+  .media video,.media img{width:100%;height:100%;object-fit:cover;display:block}
+  section{padding:120px 0 0}
+  .head{display:grid;grid-template-columns:1fr 2fr;gap:32px;margin-bottom:48px}
+  .label{font-size:13px;color:var(--muted)}
+  h2{font-weight:500;font-size:clamp(32px,4.5vw,56px);line-height:1;letter-spacing:-.035em}
+  .rows{border-top:1px solid var(--text)}
+  .row{display:grid;grid-template-columns:1fr 2fr;gap:32px;padding:28px 0;border-bottom:1px solid var(--line);transition:padding .25s}
+  .row:hover{padding-left:12px}
+  .row .n{font-size:13px;color:var(--muted)}
+  .row .body{display:grid;grid-template-columns:1fr auto;gap:8px 32px}
+  .row h3{font-weight:500;font-size:22px;letter-spacing:-.02em}
+  .row p{grid-column:1;color:var(--muted);max-width:52ch}
+  .row .price{grid-row:1;grid-column:2;font-size:15px;white-space:nowrap}
+  .work{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+  .work .tile{aspect-ratio:1;background:var(--soft);overflow:hidden}
+  .work .tile:first-child{grid-column:span 2;grid-row:span 2;aspect-ratio:auto}
+  .work img,.work video{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s}
+  .work .tile:hover img,.work .tile:hover video{transform:scale(1.03)}
+  .stop{display:grid;grid-template-columns:1fr 2fr;gap:32px;padding:28px 0;border-bottom:1px solid var(--line)}
+  .stop .body{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+  .stop b{font-weight:500;font-size:28px;letter-spacing:-.025em}
+  .stop .dates{color:var(--muted);align-self:center}
+  .stop.now .n{color:#16a34a}
+  form{display:grid;grid-template-columns:1fr 1fr;gap:40px 32px}
   form .full{grid-column:1/-1}
-  label{display:grid;gap:6px;font-size:13px;color:var(--muted)}
-  input,select,textarea{background:var(--bg);color:var(--text);border:1px solid var(--line);border-radius:10px;padding:12px;font:inherit}
-  input:focus,select:focus,textarea:focus{outline:2px solid var(--accent);outline-offset:1px}
-  textarea{min-height:110px;resize:vertical}
+  label{display:grid;gap:8px;font-size:13px;color:var(--muted)}
+  input,select,textarea{border:0;border-bottom:1px solid var(--line);background:none;color:var(--text);font:400 20px "Inter Tight",sans-serif;padding:8px 0;border-radius:0;appearance:none;transition:border-color .2s}
+  input:focus,select:focus,textarea:focus{outline:0;border-color:var(--text)}
+  textarea{min-height:90px;resize:vertical}
   .actions{display:flex;gap:12px;flex-wrap:wrap}
-  footer{padding:40px 0;border-top:1px solid var(--line);color:var(--muted);font-size:14px}
+  footer{margin-top:140px;padding:32px 0;border-top:1px solid var(--line);font-size:14px;color:var(--muted)}
   footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
-  footer .social{display:flex;gap:18px}
-  @media (max-width:640px){nav .links{display:none}form{grid-template-columns:1fr;padding:20px}section{padding:64px 0}}
+  footer .social{display:flex;gap:24px}
+  footer a:hover{color:var(--text)}
+  @media (max-width:760px){
+    .wrap{padding:0 16px} nav .links{display:none}
+    .hero{padding-top:56px;padding-bottom:32px} .media{aspect-ratio:4/5}
+    section{padding:88px 0 0}
+    .head,.row,.stop{grid-template-columns:1fr;gap:8px}
+    .row .body{grid-template-columns:1fr} .row .price{grid-row:auto;grid-column:1}
+    .work{grid-template-columns:1fr 1fr} form{grid-template-columns:1fr;gap:28px}
+  }
 </style>
 </head>
 <body>
 <nav><div class="wrap">
   <a class="logo" href="#" data-brand></a>
-  <div class="links"><a href="#services">Services</a><a href="#work">Work</a><a href="#where">Where we are</a><a href="#book">Book</a></div>
-  <a class="btn" href="#book">Book a shoot</a>
+  <div class="links"><a href="#services">Services</a><a href="#work">Work</a><a href="#where">Location</a><a href="#book">Contact</a></div>
+  <a class="btn" href="#book">Book</a>
 </div></nav>
 
-<header class="hero">
-  <!-- <video src="media/hero.mp4" autoplay muted loop playsinline></video> -->
-  <div class="wrap">
-    <div class="pill"><span class="dot"></span><span>Now shooting in <b data-now-place></b></span></div>
-    <h1>Your story, from the sky down.</h1>
+<div class="wrap hero">
+  <div class="meta"><span class="dot"></span>Now in <span data-now-place></span> · <span data-now-dates></span></div>
+  <h1>Aerial film<br><span>&amp; photography.</span></h1>
+  <div class="hero-row">
     <p data-tagline></p>
-    <div class="cta"><a class="btn" href="#book">Check availability</a><a class="btn ghost" href="#work">See the work</a></div>
+    <div class="actions"><a class="btn" href="#book">Check availability</a><a class="btn line" href="#work">View work</a></div>
   </div>
-</header>
+</div>
+<div class="wrap"><div class="media" id="hero-media"></div></div>
 
 <section id="services"><div class="wrap">
-  <h2>Services</h2>
-  <p class="sub">Aerial and ground photo & video, edited and delivered fast. <span data-faa></span></p>
-  <div class="grid" id="service-list"></div>
+  <div class="head"><span class="label">Services</span><h2>What we shoot.</h2></div>
+  <div class="rows" id="service-list"></div>
+  <p class="label" style="margin-top:20px" data-faa></p>
 </div></section>
 
 <section id="work"><div class="wrap">
-  <h2>Recent work</h2>
-  <p class="sub">A few frames from the road.</p>
+  <div class="head"><span class="label">Work</span><h2>Selected frames.</h2></div>
   <div class="work" id="work-list"></div>
 </div></section>
 
 <section id="where"><div class="wrap">
-  <h2>Where we are</h2>
-  <p class="sub">We travel. Book us while we're in your area, or fly us in.</p>
-  <div class="route" id="route"></div>
+  <div class="head"><span class="label">Location</span><h2>Where we are.</h2></div>
+  <div class="rows" id="route"></div>
 </div></section>
 
 <section id="book"><div class="wrap">
-  <h2>Book a shoot</h2>
-  <p class="sub">Tell us what you need. We usually reply the same day.</p>
+  <div class="head"><span class="label">Contact</span><h2>Book a shoot.</h2></div>
   <form id="booking">
     <label>Name<input name="name" required autocomplete="name"></label>
     <label>Email<input name="email" type="email" autocomplete="email"></label>
     <label>Service<select name="service" id="service-select" required></select></label>
     <label>Date<input name="date" type="date"></label>
     <label class="full">Location<input name="location" placeholder="Hotel, address or area"></label>
-    <label class="full">Details<textarea name="message" placeholder="What are we shooting? Any ideas or references?"></textarea></label>
+    <label class="full">Details<textarea name="message" placeholder="Tell us about the shoot"></textarea></label>
     <div class="actions full">
       <button class="btn" type="submit" data-via="whatsapp" id="btn-wa">Send on WhatsApp</button>
-      <button class="btn ghost" type="submit" data-via="email">Send by email</button>
+      <button class="btn line" type="submit" data-via="email">Send by email</button>
     </div>
   </form>
 </div></section>
@@ -121,25 +132,28 @@
 <script src="site.config.js"></script>
 <script src="booking.js"></script>
 <script>
-  const S = window.SITE, $ = s => document.querySelector(s);
-  document.title = S.brand + " · Drone & Camera Production";
-  document.querySelectorAll("[data-brand]").forEach(e => e.textContent = S.brand);
-  document.querySelectorAll("[data-now-place]").forEach(e => e.textContent = S.now.place);
+  const S = window.SITE, $ = s => document.querySelector(s), all = (s, f) => document.querySelectorAll(s).forEach(f);
+  const media = src => src.endsWith(".mp4") ? `<video src="${src}" muted loop playsinline autoplay></video>` : `<img src="${src}" alt="" loading="lazy">`;
+  document.title = S.brand + " · Aerial Film & Photography";
+  all("[data-brand]", e => e.textContent = S.brand);
+  all("[data-now-place]", e => e.textContent = S.now.place);
+  all("[data-now-dates]", e => e.textContent = Booking.formatRange(S.now.from, S.now.to));
   $("[data-tagline]").textContent = S.tagline;
-  $("[data-faa]").textContent = S.faaCertified ? "FAA Part 107 certified and insured." : "";
+  $("[data-faa]").textContent = S.faaCertified ? "FAA Part 107 certified · Insured" : "";
   const mail = $("[data-email]"); mail.textContent = S.email; mail.href = "mailto:" + S.email;
   $("#year").textContent = new Date().getFullYear();
+  if (S.hero) $("#hero-media").innerHTML = media(S.hero);
 
-  $("#service-list").innerHTML = S.services.map(s =>
-    `<div class="card"><h3>${s.name}</h3><p>${s.desc}</p><span class="price">From $${s.from}</span></div>`).join("");
+  const pad = i => String(i + 1).padStart(2, "0");
+  $("#service-list").innerHTML = S.services.map((s, i) =>
+    `<div class="row"><span class="n">${pad(i)}</span><div class="body"><h3>${s.name}</h3><span class="price">From $${s.from}</span><p>${s.desc}</p></div></div>`).join("");
   $("#service-select").innerHTML = S.services.map(s => `<option>${s.name}</option>`).join("") + "<option>Something else</option>";
 
-  // Portfolio: add files to public/media and list them here.
-  const work = (S.work || []);
-  $("#work-list").innerHTML = (work.length ? work : Array(4).fill(null)).map(w =>
-    `<div class="tile">${w ? (w.endsWith(".mp4") ? `<video src="${w}" muted loop playsinline autoplay></video>` : `<img src="${w}" alt="" loading="lazy">`) : ""}</div>`).join("");
+  // Portfolio: put files in public/media and list them in site.config.js → work.
+  const work = S.work || [];
+  $("#work-list").innerHTML = (work.length ? work : Array(7).fill(null)).map(w => `<div class="tile">${w ? media(w) : ""}</div>`).join("");
 
-  const stop = (s, now) => `<div class="stop ${now ? "now" : ""}"><div><div class="tag">${now ? "Now" : "Next"}</div><b>${s.place}</b></div><span>${Booking.formatRange(s.from, s.to)}</span></div>`;
+  const stop = (s, now) => `<div class="stop ${now ? "now" : ""}"><span class="n label">${now ? "● Now" : "Next"}</span><div class="body"><b>${s.place}</b><span class="dates">${Booking.formatRange(s.from, s.to)}</span></div></div>`;
   $("#route").innerHTML = stop(S.now, true) + S.next.map(s => stop(s, false)).join("");
 
   const links = [["instagram", "https://instagram.com/", "Instagram"], ["youtube", "https://youtube.com/@", "YouTube"], ["tiktok", "https://tiktok.com/@", "TikTok"]];
