@@ -1,0 +1,38 @@
+name: cola
+# Publica el próximo video/Short de la cola en YouTube. 09:00 y 21:05 hora de Hawái.
+on:
+  schedule:
+    - cron: '0 19 * * *'
+    - cron: '5 7 * * *'
+  workflow_dispatch:
+    inputs:
+      dry: { description: 'Solo mostrar el próximo', type: boolean, default: false }
+permissions:
+  contents: write
+concurrency: { group: cola, cancel-in-progress: false }
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - name: Credenciales
+        env:
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+        run: |
+          umask 077
+          printf 'YT_CLIENT_ID=%s\nYT_CLIENT_SECRET=%s\n' "$YT_CLIENT_ID" "$YT_CLIENT_SECRET" > .env
+          printf '{"refresh_token":"%s","vence":0}' "$YT_REFRESH_TOKEN" > .yt-token.json
+      - name: Publicar
+        env: { GH_TOKEN: '${{ github.token }}' }
+        run: node scripts/cola.mjs ${{ inputs.dry && '--dry' || '' }}
+      - name: Guardar registro
+        if: ${{ !inputs.dry }}
+        run: |
+          git config user.name "cola-bot"; git config user.email "cola-bot@users.noreply.github.com"
+          git add cola/publicados.json
+          git diff --cached --quiet || (git commit -m "cola: publicado" && git push)

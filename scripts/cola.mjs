@@ -4,19 +4,22 @@
 import { readFileSync, writeFileSync, existsSync, mkdtempSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
 import { tmpdir } from 'node:os';
-import { join } from 'node:path';
+import { join, dirname, basename } from 'node:path';
 
 process.chdir(new URL('..', import.meta.url).pathname);
 const SITE = 'https://altitude-films-co.osuna-devs.workers.dev';
-const REG = 'shorts/publicados.json';
+const REG = 'cola/publicados.json';
 const hechos = existsSync(REG) ? JSON.parse(readFileSync(REG, 'utf8')) : {};
 // Primero los videos horizontales (toma completa), después los Shorts cuadrados.
 const cola = [
   ...JSON.parse(readFileSync('scripts/videos.json', 'utf8')).map((v) => ({ ...v, archivo: `videos/${v.id}.mp4`, largo: true, tags: [...(v.place === 'Oʻahu' ? ['oahu', 'honolulu'] : ['bigisland', 'kona', 'lava']), 'aerial', '4k'] })),
   ...JSON.parse(readFileSync('scripts/shorts.json', 'utf8')).map((x) => ({ ...x, archivo: `shorts/${x.id}.mp4` })),
 ];
-const s = cola.find((x) => !hechos[x.id] && existsSync(x.archivo));
+const s = cola.find((x) => !hechos[x.id]);
 if (!s) { console.log('cola vacía'); process.exit(0); }
+// En GitHub Actions los videos están en el release "media" del repo.
+if (!existsSync(s.archivo) && process.env.CI) execFileSync('gh', ['release', 'download', 'media', '-p', basename(s.archivo), '-D', dirname(s.archivo), '--clobber'], { stdio: 'inherit' });
+if (!existsSync(s.archivo)) { console.error(`falta ${s.archivo}`); process.exit(1); }
 
 const meta = {
   title: (s.largo ? s.title : `${s.title} #shorts`).slice(0, 100),
@@ -30,4 +33,4 @@ writeFileSync(archivo, JSON.stringify(meta));
 const videoId = execFileSync('node', ['scripts/youtube.mjs', 'subir', s.archivo, archivo]).toString().trim().split('\n').pop();
 hechos[s.id] = videoId;
 writeFileSync(REG, JSON.stringify(hechos, null, 2));
-console.log(`${s.id} → https://youtube.com/shorts/${videoId}`);
+console.log(`${s.id} → https://youtu.be/${videoId}`);
