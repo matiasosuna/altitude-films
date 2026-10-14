@@ -1,13 +1,13 @@
 // Everything editable lives here: name, contact, prices, and where we are right now.
 window.SITE = {
-  brand: "Your Name Aerial",          // TODO: real brand name
+  brand: "Tides & Altitude",
   owner: "Your Name",                 // TODO: her first name
   tagline: "Drone & camera production, wherever the story is.",
-  email: "hello@example.com",         // TODO
-  whatsapp: "",                       // TODO: digits only with country code, e.g. "18085551234"
-  instagram: "",                      // TODO: handle without @
-  youtube: "",                        // TODO: channel handle without @
-  tiktok: "",                         // TODO: handle without @
+  email: "osuna.contacto@gmail.com",
+  whatsapp: "18087450605",
+  instagram: "",                      // TODO: tidesandaltitude
+  youtube: "",                        // TODO: tidesandaltitude
+  tiktok: "",                         // TODO: tidesandaltitude
   faaCertified: true,                 // FAA Part 107
 
   now: { place: "Maui, Hawaii", from: "2026-10-13", to: "2026-10-31" },
