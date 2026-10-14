@@ -22,7 +22,7 @@ window.SITE = {
     { src: "media/resort.jpg", caption: "Resort · Kohala Coast" },
     { src: "media/float.jpg", caption: "Travel session · Oahu" },
     { src: "media/house.jpg", caption: "Property · Big Island" },
-    { src: "media/cove.jpg", caption: "Halona Cove · Oahu" },
+    { src: "media/cliffs.jpg", caption: "Makapuʻu · Oahu" },
     { src: "media/courts.jpg", caption: "Brand night shoot" },
     { src: "media/fireworks.jpg", caption: "Fireworks · Waikiki" }
   ],
