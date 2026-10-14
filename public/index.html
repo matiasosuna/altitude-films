@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aerial & Camera Production</title>
+<meta name="description" content="Drone and camera production for real estate, weddings, brands and travel. FAA Part 107 certified.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#0d1214;--panel:#151c1f;--line:#24302f;--text:#eef2f0;--muted:#9aa8a5;--accent:#5fd3b8;--accent-ink:#06231d;--sun:#f2b66d}
+  *{box-sizing:border-box;margin:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--text);font:16px/1.6 Inter,system-ui,sans-serif}
+  a{color:inherit}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+  nav{position:sticky;top:0;z-index:10;background:rgba(13,18,20,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
+  .logo{font-family:Fraunces,serif;font-weight:600;font-size:20px;text-decoration:none}
+  nav .links{display:flex;gap:22px;font-size:14px}
+  nav .links a{text-decoration:none;color:var(--muted)} nav .links a:hover{color:var(--text)}
+  .btn{display:inline-block;background:var(--accent);color:var(--accent-ink);font-weight:600;padding:12px 22px;border-radius:999px;text-decoration:none;border:0;cursor:pointer;font-size:15px}
+  .btn.ghost{background:transparent;color:var(--text);border:1px solid var(--line)}
+  header.hero{position:relative;min-height:88vh;display:flex;align-items:flex-end;overflow:hidden;
+    background:radial-gradient(120% 80% at 70% 0%,#1d4a4a 0%,transparent 60%),radial-gradient(90% 60% at 10% 100%,#3a2a1a 0%,transparent 60%),var(--bg)}
+  header.hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  header.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,var(--bg) 5%,transparent 60%)}
+  .hero .wrap{position:relative;z-index:1;padding-bottom:72px}
+  .pill{display:inline-flex;align-items:center;gap:8px;font-size:13px;padding:6px 12px;border:1px solid var(--line);border-radius:999px;background:rgba(21,28,31,.7);margin-bottom:22px}
+  .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px rgba(95,211,184,.2)}
+  h1{font-family:Fraunces,serif;font-weight:400;font-size:clamp(40px,7vw,84px);line-height:1.02;max-width:12ch;letter-spacing:-.02em}
+  .hero p{color:var(--muted);font-size:18px;max-width:46ch;margin:18px 0 28px}
+  .hero .cta{display:flex;gap:12px;flex-wrap:wrap}
+  section{padding:88px 0;border-top:1px solid var(--line)}
+  h2{font-family:Fraunces,serif;font-weight:400;font-size:clamp(30px,4vw,44px);margin-bottom:10px;letter-spacing:-.01em}
+  .sub{color:var(--muted);margin-bottom:36px;max-width:56ch}
+  .grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:8px}
+  .card h3{font-size:17px;font-weight:600}
+  .card p{color:var(--muted);font-size:15px;flex:1}
+  .price{color:var(--sun);font-weight:600;font-size:14px}
+  .work{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+  .work .tile{aspect-ratio:4/5;border-radius:14px;background:linear-gradient(160deg,#1c3a3a,#2a2318);border:1px solid var(--line);overflow:hidden}
+  .work .tile img,.work .tile video{width:100%;height:100%;object-fit:cover;display:block}
+  .route{display:grid;gap:12px}
+  .stop{display:flex;justify-content:space-between;align-items:center;gap:12px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px 22px;flex-wrap:wrap}
+  .stop.now{border-color:var(--accent)}
+  .stop b{font-size:18px;font-weight:600}
+  .stop span{color:var(--muted);font-size:14px}
+  .tag{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--accent)}
+  form{display:grid;gap:14px;grid-template-columns:1fr 1fr;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:28px}
+  form .full{grid-column:1/-1}
+  label{display:grid;gap:6px;font-size:13px;color:var(--muted)}
+  input,select,textarea{background:var(--bg);color:var(--text);border:1px solid var(--line);border-radius:10px;padding:12px;font:inherit}
+  input:focus,select:focus,textarea:focus{outline:2px solid var(--accent);outline-offset:1px}
+  textarea{min-height:110px;resize:vertical}
+  .actions{display:flex;gap:12px;flex-wrap:wrap}
+  footer{padding:40px 0;border-top:1px solid var(--line);color:var(--muted);font-size:14px}
+  footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+  footer .social{display:flex;gap:18px}
+  @media (max-width:640px){nav .links{display:none}form{grid-template-columns:1fr;padding:20px}section{padding:64px 0}}
+</style>
+</head>
+<body>
+<nav><div class="wrap">
+  <a class="logo" href="#" data-brand></a>
+  <div class="links"><a href="#services">Services</a><a href="#work">Work</a><a href="#where">Where we are</a><a href="#book">Book</a></div>
+  <a class="btn" href="#book">Book a shoot</a>
+</div></nav>
+
+<header class="hero">
+  <!-- <video src="media/hero.mp4" autoplay muted loop playsinline></video> -->
+  <div class="wrap">
+    <div class="pill"><span class="dot"></span><span>Now shooting in <b data-now-place></b></span></div>
+    <h1>Your story, from the sky down.</h1>
+    <p data-tagline></p>
+    <div class="cta"><a class="btn" href="#book">Check availability</a><a class="btn ghost" href="#work">See the work</a></div>
+  </div>
+</header>
+
+<section id="services"><div class="wrap">
+  <h2>Services</h2>
+  <p class="sub">Aerial and ground photo & video, edited and delivered fast. <span data-faa></span></p>
+  <div class="grid" id="service-list"></div>
+</div></section>
+
+<section id="work"><div class="wrap">
+  <h2>Recent work</h2>
+  <p class="sub">A few frames from the road.</p>
+  <div class="work" id="work-list"></div>
+</div></section>
+
+<section id="where"><div class="wrap">
+  <h2>Where we are</h2>
+  <p class="sub">We travel. Book us while we're in your area, or fly us in.</p>
+  <div class="route" id="route"></div>
+</div></section>
+
+<section id="book"><div class="wrap">
+  <h2>Book a shoot</h2>
+  <p class="sub">Tell us what you need. We usually reply the same day.</p>
+  <form id="booking">
+    <label>Name<input name="name" required autocomplete="name"></label>
+    <label>Email<input name="email" type="email" autocomplete="email"></label>
+    <label>Service<select name="service" id="service-select" required></select></label>
+    <label>Date<input name="date" type="date"></label>
+    <label class="full">Location<input name="location" placeholder="Hotel, address or area"></label>
+    <label class="full">Details<textarea name="message" placeholder="What are we shooting? Any ideas or references?"></textarea></label>
+    <div class="actions full">
+      <button class="btn" type="submit" data-via="whatsapp" id="btn-wa">Send on WhatsApp</button>
+      <button class="btn ghost" type="submit" data-via="email">Send by email</button>
+    </div>
+  </form>
+</div></section>
+
+<footer><div class="wrap">
+  <span>© <span id="year"></span> <span data-brand></span> · <a data-email></a></span>
+  <div class="social" id="social"></div>
+</div></footer>
+
+<script src="site.config.js"></script>
+<script src="booking.js"></script>
+<script>
+  const S = window.SITE, $ = s => document.querySelector(s);
+  document.title = S.brand + " · Drone & Camera Production";
+  document.querySelectorAll("[data-brand]").forEach(e => e.textContent = S.brand);
+  document.querySelectorAll("[data-now-place]").forEach(e => e.textContent = S.now.place);
+  $("[data-tagline]").textContent = S.tagline;
+  $("[data-faa]").textContent = S.faaCertified ? "FAA Part 107 certified and insured." : "";
+  const mail = $("[data-email]"); mail.textContent = S.email; mail.href = "mailto:" + S.email;
+  $("#year").textContent = new Date().getFullYear();
+
+  $("#service-list").innerHTML = S.services.map(s =>
+    `<div class="card"><h3>${s.name}</h3><p>${s.desc}</p><span class="price">From $${s.from}</span></div>`).join("");
+  $("#service-select").innerHTML = S.services.map(s => `<option>${s.name}</option>`).join("") + "<option>Something else</option>";
+
+  // Portfolio: add files to public/media and list them here.
+  const work = (S.work || []);
+  $("#work-list").innerHTML = (work.length ? work : Array(4).fill(null)).map(w =>
+    `<div class="tile">${w ? (w.endsWith(".mp4") ? `<video src="${w}" muted loop playsinline autoplay></video>` : `<img src="${w}" alt="" loading="lazy">`) : ""}</div>`).join("");
+
+  const stop = (s, now) => `<div class="stop ${now ? "now" : ""}"><div><div class="tag">${now ? "Now" : "Next"}</div><b>${s.place}</b></div><span>${Booking.formatRange(s.from, s.to)}</span></div>`;
+  $("#route").innerHTML = stop(S.now, true) + S.next.map(s => stop(s, false)).join("");
+
+  const links = [["instagram", "https://instagram.com/", "Instagram"], ["youtube", "https://youtube.com/@", "YouTube"], ["tiktok", "https://tiktok.com/@", "TikTok"]];
+  $("#social").innerHTML = links.filter(([k]) => S[k]).map(([k, u, n]) => `<a href="${u}${S[k]}" target="_blank" rel="noopener">${n}</a>`).join("");
+
+  if (!S.whatsapp) $("#btn-wa").remove();
+  $("#booking").addEventListener("submit", e => {
+    e.preventDefault();
+    const d = Object.fromEntries(new FormData(e.target));
+    const url = e.submitter.dataset.via === "whatsapp" ? Booking.whatsappLink(S.whatsapp, Booking.bookingMessage(d)) : Booking.mailtoLink(S.email, d);
+    window.open(url, "_blank");
+  });
+</script>
+</body>
+</html>
