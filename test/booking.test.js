@@ -32,3 +32,7 @@ test("partner ref is sanitized and added to the message", () => {
   assert.strictEqual(B.readRef(""), "");
   assert.match(B.bookingMessage({ name: "A", service: "Surf Sessions", ref: "kihei-surf" }), /Referred by: kihei-surf/);
 });
+
+test("open-ended stop shows only the start date", () => {
+  assert.strictEqual(B.formatRange("2026-11-05"), "From Nov 5");
+});

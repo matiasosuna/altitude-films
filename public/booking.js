@@ -3,6 +3,7 @@
   function formatRange(from, to) {
     const opts = { month: "short", day: "numeric", timeZone: "UTC" };
     const f = new Date(from + "T00:00:00Z").toLocaleDateString("en-US", opts);
+    if (!to) return `From ${f}`;
     const t = new Date(to + "T00:00:00Z").toLocaleDateString("en-US", opts);
     return `${f} – ${t}`;
   }

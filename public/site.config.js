@@ -10,9 +10,9 @@ window.SITE = {
   tiktok: "",                         // TODO: tidesandaltitude
   faaCertified: true,                 // FAA Part 107
 
-  now: { place: "Maui, Hawaii", from: "2026-10-13", to: "2026-10-31" },
+  now: { place: "Maui, Hawaii", from: "2026-10-13", to: "2026-11-04" },
   next: [
-    { place: "Oahu, Hawaii", from: "2026-11-01", to: "2026-11-15" }
+    { place: "California", from: "2026-11-05" }   // add "to" when known
   ],
 
   credentials: [
