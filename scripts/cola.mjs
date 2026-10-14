@@ -10,20 +10,24 @@ process.chdir(new URL('..', import.meta.url).pathname);
 const SITE = 'https://altitude-films-co.osuna-devs.workers.dev';
 const REG = 'shorts/publicados.json';
 const hechos = existsSync(REG) ? JSON.parse(readFileSync(REG, 'utf8')) : {};
-const cola = JSON.parse(readFileSync('scripts/shorts.json', 'utf8'));
-const s = cola.find((x) => !hechos[x.id] && existsSync(`shorts/${x.id}.mp4`));
+// Primero los videos horizontales (toma completa), después los Shorts cuadrados.
+const cola = [
+  ...JSON.parse(readFileSync('scripts/videos.json', 'utf8')).map((v) => ({ ...v, archivo: `videos/${v.id}.mp4`, largo: true, tags: [...(v.place === 'Oʻahu' ? ['oahu', 'honolulu'] : ['bigisland', 'kona', 'lava']), 'aerial', '4k'] })),
+  ...JSON.parse(readFileSync('scripts/shorts.json', 'utf8')).map((x) => ({ ...x, archivo: `shorts/${x.id}.mp4` })),
+];
+const s = cola.find((x) => !hechos[x.id] && existsSync(x.archivo));
 if (!s) { console.log('cola vacía'); process.exit(0); }
 
 const meta = {
-  title: `${s.title} #shorts`.slice(0, 100),
-  description: `${s.title} · ${s.place}${s.place.includes('Hawaiʻi') ? '' : ', Hawaiʻi'}\n\nAerial film & photography by Altitude Films. Now booking in Maui (until Nov 4), then California.\nBook a shoot → ${SITE}\n\n${['hawaii', 'drone', ...s.tags, 'shorts'].map((t) => '#' + t).join(' ')}`,
+  title: (s.largo ? s.title : `${s.title} #shorts`).slice(0, 100),
+  description: `${s.title} · ${s.place}${s.place.includes('Hawaiʻi') ? '' : ', Hawaiʻi'}\n\nAerial film & photography by Altitude Films. Now booking in Maui (until Nov 4), then California.\nBook a shoot → ${SITE}\n\n${['hawaii', 'drone', ...s.tags, ...(s.largo ? ['dronefootage'] : ['shorts'])].map((t) => '#' + t).join(' ')}`,
   tags: ['hawaii', 'drone', 'aerial', ...s.tags],
 };
 if (process.argv.includes('--dry')) { console.log(s.id, meta); process.exit(0); }
 
 const archivo = join(mkdtempSync(join(tmpdir(), 'alt-')), 'meta.json');
 writeFileSync(archivo, JSON.stringify(meta));
-const videoId = execFileSync('node', ['scripts/youtube.mjs', 'subir', `shorts/${s.id}.mp4`, archivo]).toString().trim().split('\n').pop();
+const videoId = execFileSync('node', ['scripts/youtube.mjs', 'subir', s.archivo, archivo]).toString().trim().split('\n').pop();
 hechos[s.id] = videoId;
 writeFileSync(REG, JSON.stringify(hechos, null, 2));
 console.log(`${s.id} → https://youtube.com/shorts/${videoId}`);
