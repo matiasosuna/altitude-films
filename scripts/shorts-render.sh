@@ -2,7 +2,7 @@
 # Renders vertical 9:16 Shorts (12 s) from the SD card clips listed in scripts/shorts.json.
 cd "$(dirname "$0")/.." || exit 1
 SD=/Volumes/SD_Card/DCIM/DJI_001
-TRACKS=(musica/uke-1.wav musica/lofi-1.wav musica/tropical-1.wav musica/ambient-1.wav musica/uke-2.wav musica/cinematic-1.wav musica/lofi-2.wav musica/tropical-2.wav musica/ambient-2.wav)
+TRACKS=(musica/lofi-1.wav musica/lofi-3.wav musica/lofi-4.wav musica/lofi-5.wav musica/lofi-6.wav)
 python3 -c "import json;[print(s['id'],s['clip'],s['t']) for s in json.load(open('scripts/shorts.json'))]" | while read id clip t; do
   out=shorts/$id.mp4; [ -f "$out" ] && continue
   f=$(ls $SD/*_${clip}_D.MP4); n=$((10#${id#s})); MUSIC=${TRACKS[$(( (n-1) % ${#TRACKS[@]} ))]}; m=$(( (n * 7) % 60 ))
