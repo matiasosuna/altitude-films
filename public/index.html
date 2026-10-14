@@ -8,26 +8,26 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root{--bg:#fff;--text:#0a0a0a;--muted:#8a8a8a;--line:#ececec;--soft:#f4f4f4}
+  :root{--bg:#0a0a0a;--text:#f5f5f5;--muted:#8c8c8c;--line:#232323;--soft:#141414;--green:#22c55e;color-scheme:dark}
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
   body{background:var(--bg);color:var(--text);font:400 16px/1.5 "Inter Tight",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
   a{color:inherit;text-decoration:none}
   .wrap{max-width:1240px;margin:0 auto;padding:0 32px}
-  nav{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.9);backdrop-filter:blur(12px)}
+  nav{position:sticky;top:0;z-index:10;background:rgba(10,10,10,.85);backdrop-filter:blur(12px)}
   nav .wrap{display:flex;align-items:center;justify-content:space-between;height:68px;font-size:14px}
   .logo{font-weight:600;letter-spacing:-.01em}
   nav .links{display:flex;gap:32px;color:var(--muted)}
   nav .links a:hover{color:var(--text)}
   .hero{padding-top:96px;padding-bottom:48px}
   .meta{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted);margin-bottom:28px}
-  .dot{width:6px;height:6px;border-radius:50%;background:#16a34a;animation:p 2s infinite}
+  .dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:p 2s infinite}
   @keyframes p{50%{opacity:.3}}
   h1{font-weight:500;font-size:clamp(48px,9vw,136px);line-height:.95;letter-spacing:-.045em}
   h1 span{color:var(--muted)}
   .hero-row{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;margin-top:40px;flex-wrap:wrap}
   .hero-row p{max-width:34ch;color:var(--muted);font-size:17px}
-  .btn{display:inline-flex;align-items:center;gap:10px;background:var(--text);color:#fff;font:500 15px "Inter Tight",sans-serif;padding:14px 26px;border:0;border-radius:2px;cursor:pointer;transition:opacity .2s}
+  .btn{display:inline-flex;align-items:center;gap:10px;background:var(--text);color:var(--bg);font:500 15px "Inter Tight",sans-serif;padding:14px 26px;border:0;border-radius:2px;cursor:pointer;transition:opacity .2s}
   .btn:hover{opacity:.8}
   .btn.line{background:none;color:var(--text);box-shadow:inset 0 0 0 1px var(--text)}
   .media{aspect-ratio:21/9;background:var(--soft);overflow:hidden}
@@ -37,13 +37,20 @@
   .label{font-size:13px;color:var(--muted)}
   h2{font-weight:500;font-size:clamp(32px,4.5vw,56px);line-height:1;letter-spacing:-.035em}
   .rows{border-top:1px solid var(--text)}
-  .row{display:grid;grid-template-columns:1fr 2fr;gap:32px;padding:28px 0;border-bottom:1px solid var(--line);transition:padding .25s}
-  .row:hover{padding-left:12px}
-  .row .n{font-size:13px;color:var(--muted)}
-  .row .body{display:grid;grid-template-columns:1fr auto;gap:8px 32px}
-  .row h3{font-weight:500;font-size:22px;letter-spacing:-.02em}
-  .row p{grid-column:1;color:var(--muted);max-width:52ch}
-  .row .price{grid-row:1;grid-column:2;font-size:15px;white-space:nowrap}
+  .plans{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+  .plan{background:var(--bg);padding:32px;display:flex;flex-direction:column;gap:20px;transition:background .25s}
+  .plan:hover{background:var(--soft)}
+  .plan h3{font-weight:500;font-size:20px;letter-spacing:-.02em}
+  .plan .desc{color:var(--muted);font-size:15px;margin-top:4px}
+  .amount{display:flex;align-items:baseline;gap:8px}
+  .amount b{font-weight:500;font-size:52px;letter-spacing:-.04em;line-height:1}
+  .amount span{color:var(--muted);font-size:14px}
+  .plan ul{list-style:none;display:grid;gap:10px;font-size:15px;flex:1;padding-top:20px;border-top:1px solid var(--line)}
+  .plan li{display:flex;gap:10px}
+  .plan li::before{content:"✓";color:var(--green)}
+  .plan .when{font-size:13px;color:var(--muted)}
+  .plan .btn{justify-content:center}
+  .notes{display:flex;flex-wrap:wrap;gap:8px 32px;margin-top:24px;font-size:14px;color:var(--muted)}
   .work{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
   .work .tile{aspect-ratio:1;background:var(--soft);overflow:hidden}
   .work .tile:first-child{grid-column:span 2;grid-row:span 2;aspect-ratio:auto}
@@ -53,7 +60,7 @@
   .stop .body{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
   .stop b{font-weight:500;font-size:28px;letter-spacing:-.025em}
   .stop .dates{color:var(--muted);align-self:center}
-  .stop.now .n{color:#16a34a}
+  .stop.now .n{color:var(--green)}
   form{display:grid;grid-template-columns:1fr 1fr;gap:40px 32px}
   form .full{grid-column:1/-1}
   label{display:grid;gap:8px;font-size:13px;color:var(--muted)}
@@ -69,8 +76,8 @@
     .wrap{padding:0 16px} nav .links{display:none}
     .hero{padding-top:56px;padding-bottom:32px} .media{aspect-ratio:4/5}
     section{padding:88px 0 0}
-    .head,.row,.stop{grid-template-columns:1fr;gap:8px}
-    .row .body{grid-template-columns:1fr} .row .price{grid-row:auto;grid-column:1}
+    .head,.stop{grid-template-columns:1fr;gap:8px}
+    .plans{grid-template-columns:1fr} .plan{padding:24px}
     .work{grid-template-columns:1fr 1fr} form{grid-template-columns:1fr;gap:28px}
   }
 </style>
@@ -78,7 +85,7 @@
 <body>
 <nav><div class="wrap">
   <a class="logo" href="#" data-brand></a>
-  <div class="links"><a href="#services">Services</a><a href="#work">Work</a><a href="#where">Location</a><a href="#book">Contact</a></div>
+  <div class="links"><a href="#services">Pricing</a><a href="#work">Work</a><a href="#where">Location</a><a href="#book">Contact</a></div>
   <a class="btn" href="#book">Book</a>
 </div></nav>
 
@@ -93,9 +100,9 @@
 <div class="wrap"><div class="media" id="hero-media"></div></div>
 
 <section id="services"><div class="wrap">
-  <div class="head"><span class="label">Services</span><h2>What we shoot.</h2></div>
-  <div class="rows" id="service-list"></div>
-  <p class="label" style="margin-top:20px" data-faa></p>
+  <div class="head"><span class="label">Pricing</span><h2>Simple, fixed prices.</h2></div>
+  <div class="plans" id="service-list"></div>
+  <div class="notes" id="notes"></div>
 </div></section>
 
 <section id="work"><div class="wrap">
@@ -139,15 +146,19 @@
   all("[data-now-place]", e => e.textContent = S.now.place);
   all("[data-now-dates]", e => e.textContent = Booking.formatRange(S.now.from, S.now.to));
   $("[data-tagline]").textContent = S.tagline;
-  $("[data-faa]").textContent = S.faaCertified ? "FAA Part 107 certified · Insured" : "";
   const mail = $("[data-email]"); mail.textContent = S.email; mail.href = "mailto:" + S.email;
   $("#year").textContent = new Date().getFullYear();
   if (S.hero) $("#hero-media").innerHTML = media(S.hero);
 
-  const pad = i => String(i + 1).padStart(2, "0");
-  $("#service-list").innerHTML = S.services.map((s, i) =>
-    `<div class="row"><span class="n">${pad(i)}</span><div class="body"><h3>${s.name}</h3><span class="price">From $${s.from}</span><p>${s.desc}</p></div></div>`).join("");
-  $("#service-select").innerHTML = S.services.map(s => `<option>${s.name}</option>`).join("") + "<option>Something else</option>";
+  $("#service-list").innerHTML = S.services.map(s => `<div class="plan">
+      <div><h3>${s.name}</h3><p class="desc">${s.desc}</p></div>
+      <div class="amount"><b>$${s.price.toLocaleString("en-US")}</b><span>${s.unit}</span></div>
+      <ul>${s.includes.map(i => `<li>${i}</li>`).join("")}</ul>
+      <span class="when">Delivered in ${s.delivery}</span>
+      <a class="btn line" href="#book" data-pick="${s.name}">Book this</a></div>`).join("");
+  $("#notes").innerHTML = [...S.pricingNotes, S.faaCertified ? "FAA Part 107 certified · Insured" : ""].filter(Boolean).map(n => `<span>${n}</span>`).join("");
+  all("[data-pick]", a => a.addEventListener("click", () => $("#service-select").value = a.dataset.pick));
+  $("#service-select").innerHTML = S.services.map(s => `<option value="${s.name}">${s.name} · $${s.price.toLocaleString("en-US")}</option>`).join("") + "<option>Something else</option>";
 
   // Portfolio: put files in public/media and list them in site.config.js → work.
   const work = S.work || [];
