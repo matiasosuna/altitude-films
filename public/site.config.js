@@ -1,13 +1,13 @@
 // Everything editable lives here: name, contact, prices, and where we are right now.
 window.SITE = {
-  brand: "Tides & Altitude",
+  brand: "Altitude Films Co.",
   owner: "Your Name",                 // TODO: her first name
   tagline: "Drone & camera production, wherever the story is.",
   email: "osuna.contacto@gmail.com",
   whatsapp: "18087450605",
-  instagram: "",                      // TODO: tidesandaltitude
-  youtube: "",                        // TODO: tidesandaltitude
-  tiktok: "",                         // TODO: tidesandaltitude
+  instagram: "",                      // TODO: altitudefilmsco
+  youtube: "",                        // TODO: altitudefilmsco
+  tiktok: "",                         // TODO: altitudefilmsco
   faaCertified: true,                 // FAA Part 107
 
   now: { place: "Maui, Hawaii", from: "2026-10-13", to: "2026-11-04" },
