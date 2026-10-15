@@ -15,6 +15,16 @@ const cola = [
   ...JSON.parse(readFileSync('scripts/videos.json', 'utf8')).map((v) => ({ ...v, archivo: `videos/${v.id}.mp4`, largo: true, tags: [...(v.place === 'Oʻahu' ? ['oahu', 'honolulu'] : ['bigisland', 'kona', 'lava']), 'aerial', '4k'] })),
   ...JSON.parse(readFileSync('scripts/shorts.json', 'utf8')).map((x) => ({ ...x, archivo: `shorts/${x.id}.mp4` })),
 ];
+// Si una subida quedó privada (se cortó antes de publicarla), primero se publica esa.
+const pendiente = Object.entries(hechos).find(([, v]) => v.startsWith('privado:'));
+if (pendiente) {
+  const id = pendiente[1].slice(8);
+  execFileSync('node', ['scripts/youtube.mjs', 'publicar', id], { stdio: 'inherit' });
+  hechos[pendiente[0]] = id;
+  writeFileSync(REG, JSON.stringify(hechos, null, 2));
+  console.log(`${pendiente[0]} publicado (estaba privado)`);
+  process.exit(0);
+}
 const s = cola.find((x) => !hechos[x.id]);
 if (!s) { console.log('cola vacía'); process.exit(0); }
 // En GitHub Actions los videos están en el release "media" del repo.
@@ -30,7 +40,14 @@ if (process.argv.includes('--dry')) { console.log(s.id, meta); process.exit(0); 
 
 const archivo = join(mkdtempSync(join(tmpdir(), 'alt-')), 'meta.json');
 writeFileSync(archivo, JSON.stringify(meta));
-const videoId = execFileSync('node', ['scripts/youtube.mjs', 'subir', s.archivo, archivo]).toString().trim().split('\n').pop();
+let videoId;
+try {
+  videoId = execFileSync('node', ['scripts/youtube.mjs', 'subir', s.archivo, archivo]).toString().trim().split('\n').pop();
+} catch (e) {
+  const subido = String(e.stdout || '').match(/SUBIDO (\S+)/);
+  if (subido) { hechos[s.id] = `privado:${subido[1]}`; writeFileSync(REG, JSON.stringify(hechos, null, 2)); }
+  throw e;
+}
 hechos[s.id] = videoId;
 writeFileSync(REG, JSON.stringify(hechos, null, 2));
 console.log(`${s.id} → https://youtu.be/${videoId}`);

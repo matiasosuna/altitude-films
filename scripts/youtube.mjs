@@ -65,13 +65,19 @@ async function subir(archivo, metaArchivo) {
   const salida = execFileSync('curl', ['-sS', '-X', 'PUT', '-H', `authorization: Bearer ${await acceso()}`, '-H', 'content-type: video/mp4', '--data-binary', `@${archivo}`, destino], { maxBuffer: 1 << 26 }).toString();
   const v = JSON.parse(salida);
   if (!v.id) throw new Error(`subida: ${salida.slice(0, 300)}`);
-  await api('/videos?part=status', { method: 'PUT', body: JSON.stringify({ id: v.id, status: { privacyStatus: 'public', selfDeclaredMadeForKids: false } }) });
+  console.log(`SUBIDO ${v.id}`); // si lo que sigue falla, la cola lo publica en la próxima corrida
+  await publicar(v.id);
   console.log(v.id);
   return v.id;
+}
+
+async function publicar(id) {
+  await api('/videos?part=status', { method: 'PUT', body: JSON.stringify({ id, status: { privacyStatus: 'public', selfDeclaredMadeForKids: false } }) });
 }
 
 const [cmd, ...args] = process.argv.slice(2);
 if (cmd === 'auth') await autorizar();
 else if (cmd === 'canal') { const j = await api('/channels?part=snippet&mine=true'); console.log(j.items?.map((c) => `${c.id} ${c.snippet.title} ${c.snippet.customUrl}`).join('\n')); }
 else if (cmd === 'subir') await subir(args[0], args[1]);
+else if (cmd === 'publicar') { await publicar(args[0]); console.log('público', args[0]); }
 else console.log('comandos: auth | canal | subir <video.mp4> <meta.json>');
